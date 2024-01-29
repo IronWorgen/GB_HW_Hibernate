@@ -26,7 +26,7 @@ public class Program {
             Transaction addLectorsTransaction = session.beginTransaction();
 
             List<Lector> lectors = session.createQuery("from Lector", Lector.class).list();
-            if (lectors.size()==0){
+            if (lectors.size() == 0) {
                 Lector lector1 = new Lector("Anton");
                 Lector lector2 = new Lector("Vova");
                 session.save(lector1);
@@ -39,7 +39,7 @@ public class Program {
         try (Session session = sessionFactory.getCurrentSession()) {
             Transaction addCourcesTransaction = session.beginTransaction();
             List<Lector> lectors = session.createQuery("from Lector", Lector.class).list();
-            if (lectors.size()>0) {
+            if (lectors.size() > 0) {
                 for (int i = 0; i < 5; i++) {
                     Course course = Course.getRandomCourse();
                     course.setLector(lectors.get(new Random().nextInt(lectors.size())));
@@ -60,7 +60,7 @@ public class Program {
 
             List<Lector> lectors = session.createQuery("from Lector").list();
             for (Lector lector : lectors) {
-                if(lector.getId()!= course.getLector().getId()){
+                if (lector.getId() != course.getLector().getId()) {
                     course.setLector(lector);
                     break;
                 }
@@ -77,17 +77,18 @@ public class Program {
 
     /**
      * отобразить список курсов у каждого лектора
+     *
      * @param sessionFactory
      */
-    private static  void  showLectors(SessionFactory sessionFactory){
+    private static void showLectors(SessionFactory sessionFactory) {
         try (Session session = sessionFactory.getCurrentSession()) {
             Transaction addCourcesTransaction = session.beginTransaction();
             List<Lector> lectors = session.createQuery("from Lector", Lector.class).list();
             System.out.println();
             for (Lector lector : lectors) {
-                System.out.println(lector.getName()+": ");
+                System.out.println(lector.getName() + ": ");
                 for (Course course : lector.getCourses()) {
-                    System.out.println("\t"+course);
+                    System.out.println("\t" + course);
                 }
                 System.out.println();
             }

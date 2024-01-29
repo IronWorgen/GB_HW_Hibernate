@@ -10,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Lector {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
